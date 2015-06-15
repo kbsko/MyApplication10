@@ -29,12 +29,15 @@ public class MainActivity extends ActionBarActivity implements MapViewConstants 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         MapView map = (MapView) findViewById(R.id.map);
-        map.setUseDataConnection(true);
+        map.setUseDataConnection(false);
         map.setTileSource(TileSourceFactory.MAPQUESTOSM);
         map.setBuiltInZoomControls(true);
         map.setMultiTouchControls(true);
         IMapController mapController = map.getController();
-        mapController.setZoom(4);
+      //  BoundingBoxE6 bbox = new BoundingBoxE6(56.035226,92.779541,55.973798,93.010254);
+    //    map.setScrollableAreaLimit(bbox);
+        mapController.setCenter(new GeoPoint(56.035226, 92.779541));
+        mapController.setZoom(12);
 
     }
 
