@@ -2,10 +2,15 @@ package com.dev.mobile.myapplication10;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
+import org.osmdroid.api.IMapController;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
@@ -23,14 +28,16 @@ public class MainActivity extends ActionBarActivity implements MapViewConstants 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MapView map = (MapView) findViewById(R.id.map);
+        map.setUseDataConnection(true);
+        map.setTileSource(TileSourceFactory.MAPQUESTOSM);
+        map.setBuiltInZoomControls(true);
+        map.setMultiTouchControls(true);
+        IMapController mapController = map.getController();
+        mapController.setZoom(4);
 
-
-        mapView = (MapView) this.findViewById(R.id.mapview);
-        mapView.setBuiltInZoomControls(true);
-        mapView.setMultiTouchControls(true);
-        mapController = (MapController) this.mapView.getController();
-        mapController.setZoom(2);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
